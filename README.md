@@ -1,1 +1,1 @@
-# attendance-management-system
+# Attendance Management System
