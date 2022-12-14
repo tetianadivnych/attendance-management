@@ -1,8 +1,7 @@
 package com.project.attendancemanagementsystem.controller;
 
-import com.project.attendancemanagementsystem.model.Student;
 import com.project.attendancemanagementsystem.model.StudentResponse;
-import com.project.attendancemanagementsystem.service.StudentRequest;
+import com.project.attendancemanagementsystem.model.StudentRequest;
 import com.project.attendancemanagementsystem.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

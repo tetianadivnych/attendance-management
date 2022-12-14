@@ -1,11 +1,12 @@
-package com.project.attendancemanagementsystem.model;
+package com.project.attendancemanagementsystem.entity;
+
+import com.project.attendancemanagementsystem.entity.Student;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.DayOfWeek;
 
 
 @Entity

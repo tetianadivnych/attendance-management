@@ -1,4 +1,4 @@
-package com.project.attendancemanagementsystem.service;
+package com.project.attendancemanagementsystem.model;
 
 public class StudentRequest {
 

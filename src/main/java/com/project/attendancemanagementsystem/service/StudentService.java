@@ -1,9 +1,10 @@
 package com.project.attendancemanagementsystem.service;
 
-import com.project.attendancemanagementsystem.model.Schedule;
-import com.project.attendancemanagementsystem.model.Student;
+import com.project.attendancemanagementsystem.converter.EntityConverter;
+import com.project.attendancemanagementsystem.entity.Schedule;
+import com.project.attendancemanagementsystem.entity.Student;
+import com.project.attendancemanagementsystem.model.StudentRequest;
 import com.project.attendancemanagementsystem.model.StudentResponse;
-import com.project.attendancemanagementsystem.repository.ScheduleRepository;
 import com.project.attendancemanagementsystem.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +16,21 @@ import java.util.stream.Collectors;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    private final ScheduleRepository scheduleRepository;
+    private final ScheduleService scheduleService;
 
-    public StudentService(StudentRepository studentRepository, ScheduleRepository scheduleRepository) {
+    public StudentService(StudentRepository studentRepository, ScheduleService scheduleService) {
         this.studentRepository = studentRepository;
-        this.scheduleRepository = scheduleRepository;
+        this.scheduleService = scheduleService;
     }
 
     public List<StudentResponse> getStudents() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream()
+        return studentRepository.findAll().stream()
                 .map(student -> EntityConverter.convertStudent(student))
                 .collect(Collectors.toList());
     }
 
     public void addStudent(StudentRequest request) {
-        Schedule existingSchedule = scheduleRepository.findById(request.getScheduleId()).orElseThrow(() -> new EntityNotFoundException("Schedule doesn't exist"));
+        Schedule existingSchedule = scheduleService.findScheduleById(request);
         Student student = new Student();
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());

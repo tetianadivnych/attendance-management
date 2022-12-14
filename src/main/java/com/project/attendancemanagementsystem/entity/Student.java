@@ -1,4 +1,4 @@
-package com.project.attendancemanagementsystem.model;
+package com.project.attendancemanagementsystem.entity;
 
 import javax.persistence.*;
 
