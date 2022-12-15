@@ -1,7 +1,6 @@
 package com.project.attendancemanagementsystem.service;
 
 import com.project.attendancemanagementsystem.entity.Schedule;
-import com.project.attendancemanagementsystem.model.StudentRequest;
 import com.project.attendancemanagementsystem.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,9 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    public Schedule findScheduleById(StudentRequest request) {
-        return scheduleRepository.findById(request.getScheduleId())
+    public Schedule findScheduleById(Long scheduleId) {
+        return scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new EntityNotFoundException("Schedule doesn't exist"));
     }
+
 }

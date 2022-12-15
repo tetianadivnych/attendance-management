@@ -30,11 +30,35 @@ public class StudentService {
     }
 
     public void addStudent(StudentRequest request) {
-        Schedule existingSchedule = scheduleService.findScheduleById(request);
+        Schedule existingSchedule = scheduleService.findScheduleById(request.getScheduleId());
         Student student = new Student();
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());
         student.setSchedule(existingSchedule);
         studentRepository.save(student);
     }
+
+    public Student getStudentById(Long studentId) {
+        return studentRepository.findById(studentId)
+                .orElseThrow(() -> new EntityNotFoundException
+                        ("Student with id" + studentId + " is not registered"));
+    }
+
+    public void updateStudent(StudentRequest inputData) {
+        Student registeredStudent = getStudentById(inputData.getId());
+        registeredStudent.setFirstName(inputData.getFirstName());
+        registeredStudent.setLastName(inputData.getLastName());
+        Schedule schedule = scheduleService.findScheduleById(inputData.getScheduleId());
+        registeredStudent.setSchedule(schedule);
+        studentRepository.save(registeredStudent);
+    }
+
+    public void deleteStudent(List<Long> requestId) {
+        List<Long> idList = studentRepository.findAllById(requestId)
+                .stream()
+                .map(student -> student.getId())
+                .collect(Collectors.toList());
+        studentRepository.deleteAllById(idList);
+    }
+
 }
