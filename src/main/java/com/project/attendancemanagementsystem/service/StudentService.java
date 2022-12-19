@@ -30,7 +30,7 @@ public class StudentService {
     }
 
     public void addStudent(StudentRequest request) {
-        Schedule existingSchedule = scheduleService.findScheduleById(request.getScheduleId());
+        Schedule existingSchedule = scheduleService.getScheduleById(request.getScheduleId());
         Student student = new Student();
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());
@@ -48,17 +48,13 @@ public class StudentService {
         Student registeredStudent = getStudentById(inputData.getId());
         registeredStudent.setFirstName(inputData.getFirstName());
         registeredStudent.setLastName(inputData.getLastName());
-        Schedule schedule = scheduleService.findScheduleById(inputData.getScheduleId());
+        Schedule schedule = scheduleService.getScheduleById(inputData.getScheduleId());
         registeredStudent.setSchedule(schedule);
         studentRepository.save(registeredStudent);
     }
 
-    public void deleteStudent(List<Long> requestId) {
-        List<Long> idList = studentRepository.findAllById(requestId)
-                .stream()
-                .map(student -> student.getId())
-                .collect(Collectors.toList());
-        studentRepository.deleteAllById(idList);
+    public void deleteStudent(List<Long> ids) {
+        studentRepository.deleteAllById(ids);
     }
 
 }

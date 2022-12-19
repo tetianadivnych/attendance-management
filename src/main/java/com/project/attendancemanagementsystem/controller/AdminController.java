@@ -16,24 +16,24 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/admin/students")
+    @PostMapping("/admin")
     public void addStudent(@RequestBody StudentRequest studentRequest) {
         adminService.addStudent(studentRequest);
     }
 
-    @GetMapping("/admin/students")
+    @GetMapping("/admin")
     public List<StudentResponse> getStudents() {
         return adminService.getStudents();
     }
 
-    @PutMapping("/admin/students")
+    @PutMapping("/admin")
     public void updateStudent(@RequestBody StudentRequest request) {
         adminService.updateStudent(request);
     }
 
-    @DeleteMapping("/admin/students")
-    public void deleteStudent(@RequestParam List<Long> id) {
-        adminService.deleteStudent(id);
+    @DeleteMapping("/admin")
+    public void deleteStudent(@RequestParam List<Long> ids) {
+        adminService.deleteStudent(ids);
     }
 
 }

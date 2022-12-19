@@ -27,8 +27,8 @@ public class AdminService {
         studentService.updateStudent(request);
     }
 
-    public void deleteStudent(List<Long> id) {
-        studentService.deleteStudent(id);
+    public void deleteStudent(List<Long> ids) {
+        studentService.deleteStudent(ids);
     }
 
 }
