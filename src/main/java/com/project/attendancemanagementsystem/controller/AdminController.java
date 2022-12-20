@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin")
 public class AdminController {
 
     private final AdminService adminService;
@@ -16,22 +17,22 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/students")
     public void addStudent(@RequestBody StudentRequest studentRequest) {
         adminService.addStudent(studentRequest);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/students")
     public List<StudentResponse> getStudents() {
         return adminService.getStudents();
     }
 
-    @PutMapping("/admin")
+    @PutMapping("/students")
     public void updateStudent(@RequestBody StudentRequest request) {
         adminService.updateStudent(request);
     }
 
-    @DeleteMapping("/admin")
+    @DeleteMapping("/students")
     public void deleteStudent(@RequestParam List<Long> ids) {
         adminService.deleteStudent(ids);
     }
