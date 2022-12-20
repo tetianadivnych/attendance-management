@@ -5,6 +5,7 @@ public class StudentRequest {
     private String firstName;
     private String lastName;
     private Long scheduleId;
+    private Long id;
 
     public String getFirstName() {
         return firstName;
@@ -29,4 +30,13 @@ public class StudentRequest {
     public void setScheduleId(Long scheduleId) {
         this.scheduleId = scheduleId;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
