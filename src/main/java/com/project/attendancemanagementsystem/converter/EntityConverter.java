@@ -24,4 +24,6 @@ public class EntityConverter {
         response.setNumberOfHours(schedule.getNumberOfHours());
         return response;
     }
+
+
 }

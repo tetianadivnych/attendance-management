@@ -2,7 +2,9 @@ package com.project.attendancemanagementsystem.controller;
 
 import com.project.attendancemanagementsystem.model.StudentRequest;
 import com.project.attendancemanagementsystem.model.StudentResponse;
+import com.project.attendancemanagementsystem.model.TeacherRequest;
 import com.project.attendancemanagementsystem.service.AdminService;
+import com.project.attendancemanagementsystem.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +14,11 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
+    private final TeacherService teacherService;
 
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, TeacherService teacherService) {
         this.adminService = adminService;
+        this.teacherService = teacherService;
     }
 
     @PostMapping("/students")
@@ -35,6 +39,11 @@ public class AdminController {
     @DeleteMapping("/students")
     public void deleteStudent(@RequestParam List<Long> ids) {
         adminService.deleteStudent(ids);
+    }
+
+    @PostMapping("/teachers")
+    public void addTeacherWithSchedules(@RequestBody TeacherRequest request) {
+        teacherService.addTeacherWithSchedules(request);
     }
 
 }
