@@ -18,13 +18,20 @@ public class TeacherScheduleService {
     }
 
     public void assignSchedules(TeacherRequest request, Teacher teacher) {
+        assignStudentSchedule(request, teacher);
+        assignEmployeeSchedule(request, teacher);
+    }
+
+    private void assignStudentSchedule(TeacherRequest request, Teacher teacher) {
         TeacherSchedule teacherStudentSchedule = new TeacherSchedule();
         Long studentScheduleId = request.getStudentSchedule();
         Schedule existingStudentSchedule = scheduleService.getScheduleById(studentScheduleId);
         teacherStudentSchedule.setSchedule(existingStudentSchedule);
         teacherStudentSchedule.setTeacher(teacher);
         teacherScheduleRepository.save(teacherStudentSchedule);
+    }
 
+    private void assignEmployeeSchedule(TeacherRequest request, Teacher teacher) {
         TeacherSchedule teacherEmployeeSchedule = new TeacherSchedule();
         Long employeeScheduleId = request.getEmployeeSchedule();
         Schedule existingEmployeeSchedule = scheduleService.getScheduleById(employeeScheduleId);

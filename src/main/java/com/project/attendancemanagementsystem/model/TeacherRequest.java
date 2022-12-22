@@ -1,8 +1,5 @@
 package com.project.attendancemanagementsystem.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TeacherRequest {
 
     private String firstName;
